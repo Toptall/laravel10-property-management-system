@@ -1,47 +1,101 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('frontend.frontend_dashboard')
+@section('main')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="login" :value="__('Email/Name/Phone')" />
-            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autofocus autocomplete="username" />
-            
+<!--Page Title-->
+<section class="page-title-two bg-color-1 centred">
+    <div class="pattern-layer">
+        <div class="pattern-1" style="background-image: url({{ asset('frontend/assets/images/shape/shape-9.png') }});"></div>
+        <div class="pattern-2" style="background-image: url({{ asset('frontend/assets/images/shape/shape-10.png') }});"></div>
+    </div>
+    <div class="auto-container">
+        <div class="content-box clearfix">
+            <h1>Sign In</h1>
+            <ul class="bread-crumb clearfix">
+                <li><a href="index.html">Home</a></li>
+                <li>Sign In</li>
+            </ul>
         </div>
+    </div>
+</section>
+<!--End Page Title-->
+       
+ <!-- ragister-section -->
+ <section class="ragister-section centred sec-pad">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-xl-8 col-lg-12 col-md-12 offset-xl-2 big-column">
+                <div class="sec-title">
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                </div>
+                <div class="tabs-box">
+                    <div class="tab-btn-box">
+                        <ul class="tab-btns tab-buttons centred clearfix">
+                            <li class="tab-btn active-btn" data-tab="#tab-1">Login</li>
+                            <li class="tab-btn" data-tab="#tab-2">Register</li>
+                        </ul>
+                    </div>
+<div class="tabs-content">
+<div class="tab active-tab" id="tab-1">
+    <div class="inner-box">
+        <h4>Sign in</h4>
+        <form action="{{ route('login') }}" method="post" class="default-form">
+       @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <div class="form-group">
+                <label>Email/Name/Phone </label>
+                <input type="text" name="login" id="login" required="">
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" id="password" required="">
+            </div>
+
+
+            <div class="form-group message-btn">
+                <button type="submit" class="theme-btn btn-one">Sign in</button>
+            </div>
+        </form>
+        <div class="othre-text">
+            <p>Have not any account? <a href="signup.html">Register Now</a></p>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
+    </div>
+</div>
+<div class="tab" id="tab-2">
+    <div class="inner-box">
+        <h4>Sign in</h4>
+        <form action="signin.html" method="post" class="default-form">
+            <div class="form-group">
+                <label>User name</label>
+                <input type="text" name="name" required="">
+            </div>
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" name="email" required="">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="name" required="">
+            </div>
+            <div class="form-group message-btn">
+                <button type="submit" class="theme-btn btn-one">Sign in</button>
+            </div>
+        </form>
+        <div class="othre-text">
+            <p>Have not any account? <a href="signup.html">Register Now</a></p>
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+    </div>
+</div>
+</div>
+                </div>
+            </div>
         </div>
-    </form>
-</x-guest-layout>
+    </div>
+</section>
+<!-- ragister-section end -->
+
+<!-- subscribe-section -->
+@include('frontend.home.subscribe')
+<!-- subscribe-section end -->
+
+  @endsection
