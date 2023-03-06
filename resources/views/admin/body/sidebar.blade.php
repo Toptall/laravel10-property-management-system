@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
       <a href="#" class="sidebar-brand">
-        Noble<span>UI</span>
+        Matjel<span>R Estate</span>
       </a>
       <div class="sidebar-toggler not-active">
         <span></span>
@@ -32,7 +32,7 @@
               </li>
               
               <li class="nav-item">
-                <a href="pages/email/read.html" class="nav-link">Add Type</a>
+                <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
               </li>
             </ul>
           </div>
