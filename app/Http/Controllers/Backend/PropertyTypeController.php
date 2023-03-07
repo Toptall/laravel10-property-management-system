@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PropertyType;
+use App\Models\Amenities;
 
 
 class PropertyTypeController extends Controller
@@ -85,6 +86,16 @@ class PropertyTypeController extends Controller
 
         return redirect()->back()->with($notification);
 
+    }// End Method 
+    public function AllAmenitie(){
+
+        $amenities = Amenities::latest()->get();
+        return view('backend.amenities.all_amenities',compact('amenities'));
+
+    } // End Method 
+
+    public function AddAmenitie(){
+        return view('backend.amenities.add_amenities');
     }// End Method 
 
 
