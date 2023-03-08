@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\PropertyTypeController;
+use App\Http\Controllers\Backend\PropertyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,5 +94,15 @@ Route::controller(PropertyTypeController::class)->group(function(){
 
 });
    
-   }); // End Group Admin Middleware
+// Property All Route 
+Route::controller(PropertyController::class)->group(function(){
+
+    Route::get('/all/property', 'AllProperty')->name('all.property'); 
+
+    
+ });
+
+
+
+}); // End Group Admin Middleware
 
