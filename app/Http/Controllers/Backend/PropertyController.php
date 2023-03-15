@@ -16,17 +16,16 @@ class PropertyController extends Controller
     public function AllProperty(){
 
         $property = Property::latest()->get();
-        $propertytype = PropertyType::latest()->get();
-        $amenities = Amenities::latest()->get();
-        $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
-        
-        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent'));
+        return view('backend.property.all_property',compact('property'));
 
     } // End Method 
 
     public function AddProperty(){
 
-        return view('backend.property.add_property');
+        $propertytype = PropertyType::latest()->get();
+        $amenities = Amenities::latest()->get();
+        $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
+        return view('backend.property.add_property',compact('propertytype','amenities','activeAgent'));
 
     }// End Method 
 
