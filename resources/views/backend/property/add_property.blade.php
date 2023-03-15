@@ -182,25 +182,80 @@
         <div class="col-sm-4">
             <div class="mb-3">
                 <label class="form-label">Property Type </label>
-                <input type="text" name="property_size"  class="form-control" >
+                <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
+                    <option selected="" disabled="">Select Type</option>
+                   @foreach($propertytype as $ptype)
+                    <option value="{{ $ptype->id }}">{{ $ptype->type_name }}</option>
+                   @endforeach
+                </select>
             </div>
         </div><!-- Col -->
         <div class="col-sm-4">
             <div class="mb-3">
                 <label class="form-label">Property Amenities </label>
-                <input type="text" name="property_video"  class="form-control" >
+                <select name="amenities_id[]" class="js-example-basic-multiple form-select" multiple="multiple" data-width="100%">
+
+                    @foreach($amenities as $ameni)
+                   <option value="{{ $ameni->id }}">{{ $ameni->amenitis_name }}</option>
+                  @endforeach
+   
+               </select>
             </div>
         </div><!-- Col -->
         <div class="col-sm-4">
             <div class="mb-3">
                 <label class="form-label"> Agent </label>
-                 <input type="text" name="neighborhood"  class="form-control" >
+                <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
+                    <option selected="" disabled="">Select Agent</option>
+                   @foreach($activeAgent as $agent)
+                    <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                   @endforeach
+                </select>
             </div>
         </div><!-- Col -->
 
 
     </div><!-- Row -->
+    <div class="col-sm-12">
+        <div class="mb-3">
+            <label class="form-label">Short Description</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 
+        </div>
+    </div><!-- Col -->
+
+
+
+  <div class="col-sm-12">
+        <div class="mb-3">
+            <label class="form-label">Long Description</label>
+
+            <textarea class="form-control" name="tinymce" id="tinymceExample" rows="10"></textarea>
+
+        </div>
+    </div><!-- Col -->
+
+
+<hr>
+
+<div class="mb-3">
+        <div class="form-check form-check-inline">
+<input type="checkbox" name="featured" value="1" class="form-check-input" id="checkInline1">
+            <label class="form-check-label" for="checkInline1">
+               Features Property 
+            </label>
+        </div>
+
+
+     <div class="form-check form-check-inline">
+<input type="checkbox" name="hot" value="1" class="form-check-input" id="checkInline">
+            <label class="form-check-label" for="checkInline">
+                Hot Property 
+            </label>
+        </div>
+
+
+    </div>
 
             </form>
       <button type="button" class="btn btn-primary submit">Submit form</button>

@@ -19,7 +19,8 @@
   <!-- core:css -->
   <link rel="stylesheet" href="{{ asset('backend/assets/vendors/core/core.css') }}">
   <!-- endinject -->
-
+  <link rel="stylesheet" href="{{ asset('backend/assets/vendors/select2/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.css') }}">
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{{ asset('backend/assets/vendors/flatpickr/flatpickr.min.css') }}">
   <!-- End plugin css for this page -->
@@ -86,7 +87,19 @@
         <script src="{{ asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script> 
         <script src="{{ asset('backend/assets/js/data-table.js') }}"></script>
         <!-- End datatables -->
+         <!-- Input Tags -->
+        <script src="{{ asset('backend/assets/vendors/inputmask/jquery.inputmask.min.js') }}"></script>
+        <script src="{{ asset('backend/assets/vendors/select2/select2.min.js') }}"></script>
+        <script src="{{ asset('backend/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
 
+        <script src="{{ asset('backend/assets/vendors/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+
+        <script src="{{ asset('backend/assets/js/inputmask.js') }}"></script>
+        <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+        <script src="{{ asset('backend/assets/js/typeahead.js') }}"></script>
+        <script src="{{ asset('backend/assets/js/tags-input.js') }}"></script>
+
+          <!-- Input Tags -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('backend/assets/js/code/code.js') }}"></script>
         
@@ -112,6 +125,10 @@
          @endif 
         </script>
 
+        <!-- tinymce -->
+        <script src="{{ asset('backend/assets/vendors/tinymce/tinymce.min.js') }}"></script>
+        <script src="{{ asset('backend/assets/js/tinymce.js') }}"></script>
+        <!-- tinymce -->
 
 </body>
 </html>
