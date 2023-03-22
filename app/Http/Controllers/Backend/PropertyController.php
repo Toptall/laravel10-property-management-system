@@ -79,58 +79,57 @@ class PropertyController extends Controller
             'agent_id' => $request->agent_id,
             'status' => 1,
             'property_thambnail' => $save_url,
-            'created_at' => Carbon::now(),
-
-
-
+            'created_at' => Carbon::now(), 
         ]);
-/// Multiple Image Upload From Here ////
 
-$images = $request->file('multi_img');
-foreach($images as $img){
+        /// Multiple Image Upload From Here ////
 
-$make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-Image::make($img)->resize(770,520)->save('upload/property/multi-image/'.$make_name);
-$uploadPath = 'upload/property/multi-image/'.$make_name;
+        $images = $request->file('multi_img');
+        foreach($images as $img){
 
-MultiImage::insert([
+        $make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+        Image::make($img)->resize(770,520)->save('upload/property/multi-image/'.$make_name);
+        $uploadPath = 'upload/property/multi-image/'.$make_name;
 
-    'property_id' => $property_id,
-    'photo_name' => $uploadPath,
-    'property_id' => Carbon::now(), 
+        MultiImage::insert([
 
-]); 
-} // End Foreach
+            'property_id' => $property_id,
+            'photo_name' => $uploadPath,
+            'created_at' => Carbon::now(), 
 
- /// End Multiple Image Upload From Here ////
+        ]); 
+        } // End Foreach
 
-   /// Facilities Add From Here ////
+         /// End Multiple Image Upload From Here ////
 
-   $facilities = Count($request->facility_name);
+         /// Facilities Add From Here ////
 
-   if ($facilities != NULL) {
-      for ($i=0; $i < $facilities; $i++) { 
-          $fcount = new Facility();
-          $fcount->property_id = $property_id;
-          $fcount->facility_name = $request->facility_name[$i];
-          $fcount->distance = $request->distance[$i];
-          $fcount->save();
-      }
-   }
+        $facilities = Count($request->facility_name);
 
-    /// End Facilities  ////
+        if ($facilities != NULL) {
+           for ($i=0; $i < $facilities; $i++) { 
+               $fcount = new Facility();
+               $fcount->property_id = $property_id;
+               $fcount->facility_name = $request->facility_name[$i];
+               $fcount->distance = $request->distance[$i];
+               $fcount->save();
+           }
+        }
 
-
-       $notification = array(
-       'message' => 'Property Inserted Successfully',
-       'alert-type' => 'success'
-   );
-
-   return redirect()->route('all.property')->with($notification);
+         /// End Facilities  ////
 
 
+            $notification = array(
+            'message' => 'Property Inserted Successfully',
+            'alert-type' => 'success'
+        );
 
+        return redirect()->route('all.property')->with($notification);
+ 
     }// End Method 
+
+
+
 
     public function EditProperty($id){
         
@@ -198,7 +197,34 @@ MultiImage::insert([
     }// End Method 
 
 
+    public function UpdatePropertyThambnail(Request $request){
 
+        $pro_id = $request->id;
+        $oldImage = $request->old_img;
+
+        $image = $request->file('property_thambnail');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(370,250)->save('upload/property/thambnail/'.$name_gen);
+        $save_url = 'upload/property/thambnail/'.$name_gen;
+
+        if (file_exists($oldImage)) {
+            unlink($oldImage);
+        }
+
+        Property::findOrFail($pro_id)->update([
+
+            'property_thambnail' => $save_url,
+            'updated_at' => Carbon::now(), 
+        ]);
+
+         $notification = array(
+            'message' => 'Property Image Thambnail Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification); 
+
+    }// End Method 
 
 
 }
