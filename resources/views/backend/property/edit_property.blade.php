@@ -275,7 +275,125 @@
 
 			</div>
 
+  <!--  /// Property Main Thambnail Image Update //// -->
 
+  <div class="page-content" style="margin-top: -35px;" > 
+       
+    <div class="row profile-body"> 
+      <div class="col-md-12 col-xl-12 middle-wrapper">
+        <div class="row">
+   
+   <div class="card">
+<div class="card-body">
+    <h6 class="card-title">Edit Main Thambnail Image </h6>
+        
+
+<form method="post" action="{{ route('update.property.thambnail') }}" id="myForm" enctype="multipart/form-data">
+            @csrf
+
+    <input type="hidden" name="id" value="{{ $property->id }}">
+    <input type="hidden" name="old_img" value="{{ $property->property_thambnail }}" >
+
+     <div class="row mb-3">
+        <div class="form-group col-md-6">
+            <label class="form-label">Main Thambnail </label>
+            <input type="file" name="property_thambnail" class="form-control" onChange="mainThamUrl(this)"  >
+
+            <img src="" id="mainThmb">
+
+        </div>
+
+
+           <div class="form-group col-md-6">
+            <label class="form-label">  </label> 
+            <img src="{{ asset($property->property_thambnail) }}" style="width:100px; height:100px;">
+        </div>
+    </div><!-- Col -->
+
+<button type="submit" class="btn btn-primary">Save Changes </button>
+
+
+        </form> 
+    </div>
+      </div>
+
+    </div>
+</div>
+</div>
+</div> 
+ <!--    /// End  Property Main Thambnail Image Update //// -->
+
+<!--  /// Property Multi Image Update //// -->
+
+
+<div class="page-content" style="margin-top: -35px;" > 
+
+    <div class="row profile-body"> 
+      <div class="col-md-12 col-xl-12 middle-wrapper">
+        <div class="row">
+
+   <div class="card">
+<div class="card-body">
+    <h6 class="card-title">Edit Multi Image  </h6>
+
+
+<form method="post" action="{{ route('update.property.thambnail') }}" id="myForm" enctype="multipart/form-data">
+            @csrf
+
+
+<div class="table-responsive">
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Sl</th>
+        <th>Image</th>
+        <th>Change Image </th>
+        <th>Delete </th> 
+    </tr>
+</thead>
+<tbody>
+
+    @foreach($multiImage as $key => $img)
+    <tr>
+
+         <td>{{ $key+1 }}</td>
+
+        <td class="py-1">
+            <img src="{{ asset($img->photo_name) }}" alt="image"  style="width:50px; height:50px;">
+        </td> 
+
+        <td> 
+        <input type="file" class="form-group" name="multi_img">
+        </td>
+        <td>
+<input type="submit" class="btn btn-primary px-4" value="Update Image" >
+
+<a href="" class="btn btn-danger" id="delete">Delete </a>
+        </td>
+    </tr>
+    @endforeach
+
+</tbody>
+</table>
+</div>
+
+
+
+<br><br>
+<button type="submit" class="btn btn-primary">Save Changes </button>
+
+
+        </form> 
+    </div>
+      </div>
+
+    </div>
+</div>
+</div>
+</div> 
+
+
+<!--  /// End Property Multi Image Update //// -->
 
 
 

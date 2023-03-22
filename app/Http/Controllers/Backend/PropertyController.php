@@ -137,11 +137,12 @@ class PropertyController extends Controller
         $property = Property::findOrFail($id);
         $type = $property->amenities_id;
         $property_ami = explode(',', $type);
+        $multiImage = MultiImage::where('property_id',$id)->get();
         $propertytype = PropertyType::latest()->get();
         $amenities = Amenities::latest()->get();
         $activeAgent = User::where('status','active')->where('role','agent')->latest()->get();
 
-        return view('backend.property.edit_property',compact('property','propertytype','amenities','activeAgent','property_ami'));
+        return view('backend.property.edit_property',compact('property','propertytype','amenities','activeAgent','property_ami','multiImage'));
 
     }// End Method 
 
